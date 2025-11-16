@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FF4DA6"/>
+      <stop offset="1" stop-color="#7A2CFF"/>
+    </linearGradient>
+    <linearGradient id="ag" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#00E0C7"/>
+      <stop offset="1" stop-color="#66FFE1"/>
+    </linearGradient>
+  </defs>
+  <!-- 简化扁平吉他插画 -->
+  <g transform="translate(20,40)">
+    <rect x="140" y="140" width="220" height="150" rx="28" fill="url(#pg)"/>
+    <circle cx="170" cy="216" r="22" fill="#fff" fill-opacity=".25"/>
+    <rect x="196" y="206" width="86" height="20" rx="10" fill="#fff"/>
+    <rect x="282" y="206" width="62" height="20" rx="10" fill="#fff" fill-opacity=".7"/>
+    <rect x="320" y="60" width="24" height="90" rx="8" fill="url(#ag)"/>
+    <rect x="326" y="10" width="12" height="60" rx="6" fill="url(#ag)"/>
+    <path d="M332 10c4 8 8 12 12 12s8-4 12-12" stroke="#66FFE1" stroke-width="6" stroke-linecap="round"/>
+    <path d="M360 74 L468 40" stroke="#fff" stroke-opacity=".8" stroke-width="6" stroke-linecap="round"/>
+    <path d="M360 88 L470 66" stroke="#fff" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>
+    <path d="M360 102 L468 98" stroke="#fff" stroke-opacity=".6" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>
+
+

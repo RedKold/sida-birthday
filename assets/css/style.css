@@ -1,0 +1,258 @@
+/* 颜色与主题（孤独摇滚风） */
+:root {
+  --bg: #0f0f14;
+  --card: #151521;
+  --text: #f7f7fb;
+  --muted: #b8b9c6;
+  --primary: #ff4da6; /* 粉红霓虹 */
+  --primary-2: #7a2cff; /* 紫色补色 */
+  --accent: #00e0c7; /* 霓虹青 */
+  --border: #25263a;
+  --success: #00d98b;
+  --danger: #ff5e76;
+  --shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+.theme-light {
+  --bg: #fffefe;
+  --card: #f6f6fb;
+  --text: #1b1d29;
+  --muted: #525463;
+  --primary: #ff2d8b;
+  --primary-2: #6a35ff;
+  --accent: #00bfa6;
+  --border: #e7e7f1;
+  --shadow: 0 10px 30px rgba(56, 56, 86, 0.15);
+}
+
+/* 全局 */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 80% -10%, rgba(122,44,255,0.25), transparent 70%),
+              radial-gradient(900px 500px at 20% 0%, rgba(255,77,166,0.25), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  font: 16px/1.6 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, "Noto Sans CJK SC", "Noto Sans SC", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  width: auto;
+  height: auto;
+  padding: 8px 10px;
+  background: var(--accent);
+  color: #0b0d14;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+/* 头部 */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(180deg, rgba(8,8,12,0.65), transparent);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.brand { display: flex; gap: 10px; align-items: center; }
+.brand-title { font-weight: 700; letter-spacing: 0.2px; }
+.nav-actions { display: flex; gap: 10px; align-items: center; }
+
+/* 按钮与输入 */
+.btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 10px 20px rgba(0,0,0,0.15);
+}
+.btn:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.18); }
+.btn:active { transform: translateY(0); }
+.btn.primary { background: linear-gradient(135deg, var(--primary), var(--primary-2)); border-color: transparent; }
+.btn.secondary { background: linear-gradient(135deg, var(--accent), #66ffe1); border-color: transparent; color: #07201b; }
+.btn.ghost { background: transparent; }
+.btn.icon { padding: 10px 12px; }
+
+.input, .textarea {
+  width: 100%;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.input:focus, .textarea:focus {
+  border-color: rgba(255,77,166,0.6);
+  box-shadow: 0 0 0 4px rgba(255,77,166,0.15);
+}
+
+/* 首屏 */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 28px;
+  padding: 56px 20px 24px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.hero-art {
+  display: grid;
+  place-items: center;
+}
+.guitar {
+  filter: drop-shadow(0 30px 60px rgba(122,44,255,0.3));
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+.hero-copy h1 {
+  margin: 0 0 8px;
+  font-size: clamp(32px, 6vw, 54px);
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fff, #ffe3f1 40%, #c6b8ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-copy p { margin: 0 0 16px; color: var(--muted); }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* 播放器 */
+.player {
+  padding: 24px 20px 8px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.player h2 { margin: 0 0 12px; }
+.player-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12)), var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.track-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.track-title { font-weight: 700; }
+.track-time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.controls {
+  display: grid;
+  grid-template-columns: auto auto auto 1fr 160px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.seek, .volume {
+  width: 100%;
+  appearance: none;
+  height: 10px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-2));
+  border-radius: 999px;
+  outline: none;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.seek::-webkit-slider-thumb,
+.volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #fff; border: 2px solid var(--primary);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.playlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.playlist li {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  cursor: pointer; transition: border-color .15s ease, transform .08s ease;
+}
+.playlist li:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-1px); }
+.playlist li.active { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255,77,166,0.2) inset; }
+.playlist .meta { display: grid; }
+.playlist .title { font-weight: 600; }
+.playlist .sub { color: var(--muted); font-size: 13px; }
+
+/* 时间轴 */
+.timeline { padding: 24px 20px 8px; max-width: 980px; margin: 0 auto; }
+.section-head p { margin: 6px 0 0; color: var(--muted); }
+.timeline-list { list-style: none; margin: 18px 0 0; padding: 0; position: relative; }
+.timeline-list::before {
+  content: ""; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(var(--primary), var(--primary-2));
+  filter: drop-shadow(0 6px 10px rgba(122,44,255,0.4));
+}
+.timeline-list li {
+  position: relative; margin: 0 0 16px 0; padding-left: 44px;
+}
+.timeline-list li::marker { content: ""; }
+.dot {
+  position: absolute; left: 7px; top: 4px; width: 16px; height: 16px; border-radius: 50%;
+  background: radial-gradient(circle at 70% 30%, #fff, var(--accent));
+  box-shadow: 0 0 0 3px rgba(0,224,199,0.25);
+}
+.time { font-size: 12px; color: var(--muted); }
+.event-card {
+  margin-top: 4px; padding: 12px; border-radius: 12px;
+  background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.event-title { font-weight: 700; margin-bottom: 6px; }
+.event-meta { color: var(--muted); font-size: 13px; }
+
+/* 祝福墙 */
+.wishboard { padding: 24px 20px 32px; max-width: 980px; margin: 0 auto; }
+.wish-form { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 16px; }
+.wish-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.wish-item {
+  display: grid; gap: 6px; padding: 12px; border: 1px solid var(--border); border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+}
+.wish-item .who { font-weight: 600; }
+.wish-item .when { color: var(--muted); font-size: 12px; }
+
+/* 页脚 */
+.site-footer {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 18px 20px; border-top: 1px solid rgba(255,255,255,0.06);
+  color: var(--muted);
+}
+.site-footer a { color: var(--muted); text-decoration: none; }
+.site-footer a:hover { color: var(--text); }
+
+/* 响应式 */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .controls { grid-template-columns: auto auto auto 1fr; }
+  .volume { grid-column: 1 / -1; }
+}
+
+
