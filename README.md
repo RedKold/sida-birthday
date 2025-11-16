@@ -17,9 +17,17 @@
    - 修改 `data/memories.json`，按时间从早到晚或任意顺序书写：
    ```json
    [
-     { "date": "2025-01-01", "title": "标题", "place": "地点", "detail": "描述" }
+     {
+       "date": "2025-01-01",
+       "title": "标题",
+       "place": "地点",
+       "detail": "描述",
+       "image": "assets/img/memory-1.jpg",
+       "imageAlt": "可选：图片的替代文字（无障碍用）"
+     }
    ]
    ```
+   - `image` 与 `imageAlt` 为可选字段，不填则不显示图片
 
 3. 替换 Logo/插画（可选）
    - `assets/img/logo.svg`、`assets/img/guitar.svg`

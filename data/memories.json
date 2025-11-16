@@ -3,25 +3,33 @@
     "date": "2023-11-16",
     "title": "相识那天",
     "place": "校园天桥",
-    "detail": "一段关于音乐的对话，让我们成了朋友。"
+    "detail": "一段关于音乐的对话，让我们成了朋友。",
+    "image": "assets/img/memory-1.jpg",
+    "imageAlt": "黄昏校园天桥的剪影"
   },
   {
     "date": "2024-04-07",
     "title": "第一把吉他一起挑的",
     "place": "乐器行",
-    "detail": "Pink 机身，一眼就是你的风格。"
+    "detail": "Pink 机身，一眼就是你的风格。",
+    "image": "assets/img/memory-2.jpg",
+    "imageAlt": "粉色电吉他摆在展示墙上"
   },
   {
     "date": "2024-09-30",
     "title": "深夜练团",
     "place": "地下室排练房",
-    "detail": "打点合上那刻，真的像登台演出。"
+    "detail": "打点合上那刻，真的像登台演出。",
+    "image": "assets/img/memory-3.jpg",
+    "imageAlt": "暗光下排练房里的乐队设备"
   },
   {
     "date": "2025-02-14",
     "title": "Bocchi Marathon",
     "place": "沙发与零食",
-    "detail": "笑到肚子疼，也被努力的样子狠狠共鸣。"
+    "detail": "笑到肚子疼，也被努力的样子狠狠共鸣。",
+    "image": "assets/img/memory-4.jpg",
+    "imageAlt": "一堆零食和正在播放动画的屏幕"
   }
 ] 
 

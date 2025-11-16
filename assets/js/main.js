@@ -197,6 +197,10 @@
         <div class="time">${item.date}${item.place ? " · " + item.place : ""}</div>
         <div class="event-card">
           <div class="event-title">${item.title}</div>
+          ${item.image ? `
+            <figure class="event-media">
+              <img src="${item.image}" alt="${item.imageAlt || item.title || "回忆图片"}">
+            </figure>` : ""}
           <div class="event-meta">${item.detail || ""}</div>
         </div>
       `;

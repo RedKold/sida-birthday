@@ -226,6 +226,18 @@ body {
   background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow);
 }
 .event-title { font-weight: 700; margin-bottom: 6px; }
+.event-media {
+  margin: 6px 0 6px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.event-media img {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+}
 .event-meta { color: var(--muted); font-size: 13px; }
 
 /* 祝福墙 */
