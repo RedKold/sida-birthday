@@ -33,7 +33,7 @@
       {
         title: "Distortion!! -We will B- Live ver.",
         artist: "結束バンド",
-        src: "assets/audio/結束バンド - Distortion!! -We will B- Live ver..mp3",
+        src: "assets/audio/01.mp3",
         duration: 0
       },
       {
@@ -47,24 +47,9 @@
         src: "assets/audio/結束バンド - ひとりぼっち東京 -We will B- Live ver..mp3"
       },
       {
-        title: "ギターと孤独と蒼い惑星 -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - ギターと孤独と蒼い惑星 -We will B- Live ver..mp3"
-      },
-      {
-        title: "なにが悪い -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - なにが悪い -We will B- Live ver..mp3"
-      },
-      {
         title: "カラカラ -We will B- Live ver.",
         artist: "結束バンド",
         src: "assets/audio/結束バンド - カラカラ -We will B- Live ver..mp3"
-      },
-      {
-        title: "Flashbacker -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - フラッシュバッカー -We will B- Live ver..mp3"
       },
       {
         title: "Re_Re_ -We will B- Live ver.",
@@ -87,65 +72,11 @@
         src: "assets/audio/結束バンド - 星座になれたら -We will B- Live ver..mp3"
       },
       {
-        title: "小さな曲たち（milky way） -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - milky way -We will B- Live ver..mp3"
-      },
-      {
         title: "忘れてやらない -We will B- Live ver.",
         artist: "結束バンド",
         src: "assets/audio/結束バンド - 忘れてやらない -We will B- Live ver..mp3"
       },
-      {
-        title: "夢を束ねて -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - 夢を束ねて -We will B- Live ver..mp3"
-      },
-      {
-        title: "光の中へ -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - 光の中へ -We will B- Live ver..mp3"
-      },
-      {
-        title: "秒針少女 -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - 秒針少女 -We will B- Live ver..mp3"
-      },
-      {
-        title: "私なんか -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - 私なんか -We will B- Live ver..mp3"
-      },
-      {
-        title: "あのバンド（UNITE） -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - UNITE -We will B- Live ver..mp3"
-      },
-      {
-        title: "今、僕、アンダーグラウンドから -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - 今、僕、アンダーグラウンドから -We will B- Live ver..mp3"
-      },
-      {
-        title: "惑う星 -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - 惑う星 -We will B- Live ver..mp3"
-      },
-      {
-        title: "月並みに輝け -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - 月並みに輝け -We will B- Live ver..mp3"
-      },
-      {
-        title: "僕と三原色 -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - 僕と三原色 -We will B- Live ver..mp3"
-      },
-      {
-        title: "青い惑星の Re:（転がる岩、君に朝が降る） -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - 転がる岩、君に朝が降る -We will B- Live ver..mp3"
-      }
+      
     ],
     currentIndex: 0,
     wishesKey: "sida_birthday_wishes_v1",
