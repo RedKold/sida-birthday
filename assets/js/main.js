@@ -318,17 +318,120 @@
     tick();
   };
 
-  // Wishes (localStorage)
-  const loadWishes = () => {
+  // Wishes (Supabase + localStorage 降级)
+  let supabaseClient = null;
+  let useSupabase = false;
+  
+  // 初始化 Supabase（如果配置存在）
+  const initSupabase = () => {
+    try {
+      const config = window.SUPABASE_CONFIG;
+      if (config && config.url && config.anonKey && window.supabase) {
+        supabaseClient = window.supabase.createClient(config.url, config.anonKey);
+        useSupabase = true;
+        console.log("✅ Supabase 已连接，留言将跨设备同步");
+        return true;
+      }
+    } catch (e) {
+      console.warn("Supabase 初始化失败，使用 localStorage:", e);
+    }
+    console.log("ℹ️ 使用 localStorage（仅本地存储）");
+    return false;
+  };
+
+  // 从 Supabase 加载留言
+  const loadWishesFromSupabase = async () => {
+    if (!useSupabase || !supabaseClient) return [];
+    try {
+      const { data, error } = await supabaseClient
+        .from("wishes")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(100);
+      
+      if (error) throw error;
+      return (data || []).map(w => ({
+        name: w.name || "匿名",
+        text: w.text,
+        at: new Date(w.created_at).getTime()
+      }));
+    } catch (e) {
+      console.error("从 Supabase 加载留言失败:", e);
+      return [];
+    }
+  };
+
+  // 保存留言到 Supabase
+  const saveWishToSupabase = async (name, text) => {
+    if (!useSupabase || !supabaseClient) return false;
+    try {
+      const { error } = await supabaseClient
+        .from("wishes")
+        .insert([{
+          name: name || "匿名",
+          text: text,
+          created_at: new Date().toISOString()
+        }]);
+      
+      if (error) throw error;
+      return true;
+    } catch (e) {
+      console.error("保存留言到 Supabase 失败:", e);
+      return false;
+    }
+  };
+
+  // 从 localStorage 加载留言
+  const loadWishesFromLocal = () => {
     let items = [];
     try { items = JSON.parse(localStorage.getItem(state.wishesKey) || "[]"); } catch {}
-    renderWishes(items);
+    return items;
   };
-  const saveWishes = (items) => {
+
+  // 保存留言到 localStorage
+  const saveWishToLocal = (name, text) => {
+    let items = loadWishesFromLocal();
+    items.unshift({ name, text, at: Date.now() });
     localStorage.setItem(state.wishesKey, JSON.stringify(items.slice(0, 100)));
+    return items;
   };
+
+  // 加载留言（自动选择数据源）
+  const loadWishes = async () => {
+    let items = [];
+    if (useSupabase) {
+      items = await loadWishesFromSupabase();
+      // 如果 Supabase 失败，降级到 localStorage
+      if (items.length === 0) {
+        items = loadWishesFromLocal();
+      }
+    } else {
+      items = loadWishesFromLocal();
+    }
+    renderWishes(items);
+    
+    // 如果使用 Supabase，设置实时订阅
+    if (useSupabase && supabaseClient) {
+      supabaseClient
+        .channel("wishes-channel")
+        .on("postgres_changes", 
+          { event: "INSERT", schema: "public", table: "wishes" },
+          () => {
+            console.log("🔄 检测到新留言，自动刷新");
+            loadWishes();
+          }
+        )
+        .subscribe();
+    }
+  };
+
+  // 渲染留言列表
   const renderWishes = (items) => {
     wishList.innerHTML = "";
+    if (items.length === 0) {
+      wishList.innerHTML = '<li class="wish-item" style="text-align: center; color: var(--muted); padding: 20px;">还没有留言，来第一个吧！</li>';
+      return;
+    }
     for (const w of items) {
       const li = document.createElement("li");
       li.className = "wish-item";
@@ -340,21 +443,48 @@
       wishList.appendChild(li);
     }
   };
-  const submitWish = (e) => {
+
+  // 提交留言
+  const submitWish = async (e) => {
     e.preventDefault();
     const name = (wishName.value || "").trim();
     const text = (wishText.value || "").trim();
     if (!text) return;
-    let items = [];
-    try { items = JSON.parse(localStorage.getItem(state.wishesKey) || "[]"); } catch {}
-    items.unshift({ name, text, at: Date.now() });
-    saveWishes(items);
-    renderWishes(items);
-    wishText.value = "";
+
+    // 显示加载状态
+    const submitBtn = wishForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = "发送中...";
+    submitBtn.disabled = true;
+
+    try {
+      if (useSupabase) {
+        const success = await saveWishToSupabase(name, text);
+        if (success) {
+          // Supabase 会自动通过实时订阅更新，但我们也手动刷新一次
+          await loadWishes();
+        } else {
+          // Supabase 失败，降级到 localStorage
+          const items = saveWishToLocal(name, text);
+          renderWishes(items);
+        }
+      } else {
+        const items = saveWishToLocal(name, text);
+        renderWishes(items);
+      }
+      wishText.value = "";
+      wishName.value = "";
+    } catch (e) {
+      console.error("提交留言失败:", e);
+      alert("发送失败，请稍后重试");
+    } finally {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
   };
 
   // Init
-  function init() {
+  async function init() {
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());
     loadTheme();
     themeToggle.addEventListener("click", toggleTheme);
@@ -366,7 +496,9 @@
     selectTrack(0);
     loadMemories();
 
-    loadWishes();
+    // 初始化 Supabase 并加载留言
+    initSupabase();
+    await loadWishes();
     wishForm.addEventListener("submit", submitWish);
   }
 
