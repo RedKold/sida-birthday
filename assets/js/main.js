@@ -37,44 +37,40 @@
         duration: 0
       },
       {
-        title: "青春コンプレックス -We will B- Live ver.",
-        artist: "結束バンド",
-        src: "assets/audio/結束バンド - 青春コンプレックス -We will B- Live ver..mp3"
-      },
-      {
         title: "ひとりぼっち東京 -We will B- Live ver.",
         artist: "結束バンド",
-        src: "assets/audio/結束バンド - ひとりぼっち東京 -We will B- Live ver..mp3"
+        src: "assets/audio/02.mp3",
+        duration: 0
       },
       {
         title: "カラカラ -We will B- Live ver.",
         artist: "結束バンド",
-        src: "assets/audio/結束バンド - カラカラ -We will B- Live ver..mp3"
+        src: "assets/audio/03.mp3",
       },
       {
         title: "Re_Re_ -We will B- Live ver.",
         artist: "結束バンド",
-        src: "assets/audio/結束バンド - Re_Re_ -We will B- Live ver..mp3"
+        src: "assets/audio/04.mp3",
       },
       {
         title: "あのバンド -We will B- Live ver.",
         artist: "結束バンド",
-        src: "assets/audio/結束バンド - あのバンド -We will B- Live ver..mp3"
+        src: "assets/audio/05.mp3",
       },
       {
         title: "ドッペルゲンガー -We will B- Live ver.",
         artist: "結束バンド",
-        src: "assets/audio/結束バンド - ドッペルゲンガー -We will B- Live ver..mp3"
+        src: "assets/audio/06.mp3",
       },
       {
         title: "星座になれたら -We will B- Live ver.",
         artist: "結束バンド",
-        src: "assets/audio/結束バンド - 星座になれたら -We will B- Live ver..mp3"
+        src: "assets/audio/07.mp3",
       },
       {
         title: "忘れてやらない -We will B- Live ver.",
         artist: "結束バンド",
-        src: "assets/audio/結束バンド - 忘れてやらない -We will B- Live ver..mp3"
+        src: "assets/audio/08.mp3",
       },
       
     ],
