@@ -207,17 +207,39 @@
 
   // Timeline
   async function loadMemories() {
-    try {
-      const res = await fetch("data/memories.json");
-      const data = await res.json();
-      renderTimeline(data);
-    } catch (e) {
-      console.warn("无法加载回忆数据：", e);
-      renderTimeline([
-        { date: "2024-12-01", title: "第一次喝到思达推荐的手冲", place: "街角咖啡", detail: "清爽的花香调，像冬日的阳光。" },
-        { date: "2025-03-22", title: "周末即兴 Jam", place: "朋友家客厅", detail: "吉他riff太上头了，BPM越打越快。" }
-      ]);
+    const paths = [
+      "./data/memories.json",
+      "data/memories.json",
+      "/data/memories.json"
+    ];
+    
+    for (const path of paths) {
+      try {
+        const res = await fetch(path);
+        if (!res.ok) {
+          console.warn(`无法加载 ${path}: ${res.status} ${res.statusText}`);
+          continue;
+        }
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          console.log(`成功加载 ${data.length} 条回忆数据`);
+          renderTimeline(data);
+          return;
+        } else {
+          console.warn(`${path} 返回的数据为空或格式不正确`);
+        }
+      } catch (e) {
+        console.warn(`加载 ${path} 失败:`, e);
+        continue;
+      }
     }
+    
+    // 如果所有路径都失败，使用默认数据
+    console.warn("所有路径都失败，使用默认数据");
+    renderTimeline([
+      { date: "2024-12-01", title: "第一次喝到思达推荐的手冲", place: "街角咖啡", detail: "清爽的花香调，像冬日的阳光。" },
+      { date: "2025-03-22", title: "周末即兴 Jam", place: "朋友家客厅", detail: "吉他riff太上头了，BPM越打越快。" }
+    ]);
   }
   function renderTimeline(items) {
     timelineList.innerHTML = "";
