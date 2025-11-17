@@ -246,19 +246,35 @@
     items.sort((a, b) => (a.date > b.date ? 1 : -1));
     for (const item of items) {
       const li = document.createElement("li");
+      const imgHtml = item.image ? `
+            <figure class="event-media">
+              <img src="${item.image}" 
+                   alt="${item.imageAlt || item.title || "回忆图片"}"
+                   loading="lazy"
+                   onerror="console.error('图片加载失败:', this.src); this.style.display='none';">
+            </figure>` : "";
       li.innerHTML = `
         <span class="dot"></span>
         <div class="time">${item.date}${item.place ? " · " + item.place : ""}</div>
         <div class="event-card">
           <div class="event-title">${item.title}</div>
-          ${item.image ? `
-            <figure class="event-media">
-              <img src="${item.image}" alt="${item.imageAlt || item.title || "回忆图片"}">
-            </figure>` : ""}
+          ${imgHtml}
           <div class="event-meta">${item.detail || ""}</div>
         </div>
       `;
       timelineList.appendChild(li);
+      
+      // 预加载图片并检查是否成功
+      if (item.image) {
+        const img = new Image();
+        img.onload = () => {
+          console.log(`✅ 图片加载成功: ${item.image}`);
+        };
+        img.onerror = () => {
+          console.error(`❌ 图片加载失败: ${item.image} - 请检查文件是否存在或路径是否正确`);
+        };
+        img.src = item.image;
+      }
     }
   }
 
